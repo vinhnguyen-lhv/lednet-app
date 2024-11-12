@@ -1,0 +1,3 @@
+[ZoneTransfer]
+ZoneId=3
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/510203032/49ddae27-5f2a-4967-a518-78f1c2c71723?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241106T135334Z&X-Amz-Expires=300&X-Amz-Signature=5269ed2173260646c4ec57fbff07fca1a2dac36da146ce652e1adc144fd652f1&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3Dce_zerodce.pth&response-content-type=application%2Foctet-stream

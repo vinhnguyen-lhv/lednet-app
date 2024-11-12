@@ -3,7 +3,7 @@ import math
 import numpy as np
 import random
 import torch
-from torchvision.transforms.functional_tensor import rgb_to_grayscale
+from torchvision.transforms.functional import rgb_to_grayscale
 
 
 # -------------------------------------------------------------------- #
