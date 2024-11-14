@@ -24,7 +24,7 @@ if uploaded_file is not None:
     # Decode the byte array to an OpenCV image
     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     
-    # Process the image (convert to grayscale for this example)
+    # Process the image (Enhance the image)
     output_image = lednet_inference(image)
     
     
