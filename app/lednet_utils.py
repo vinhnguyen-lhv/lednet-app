@@ -1,3 +1,4 @@
+from calendar import c
 from distutils.log import error
 import os
 import re
@@ -17,16 +18,18 @@ from inference_lednet import check_image_size
 
 
 def lednet_inference(img, model="lednet"):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cpu")
     # ------------------ set up LEDNet network -------------------
     down_factor = 8
     net = ARCH_REGISTRY.get("LEDNet")(channels=[32, 64, 128, 128], connection=False).to(
         device
     )
-    ckpt_path = "weights/lednet.pth"
-    # ckpt_path = 'weights/lednet_retrain_500000.pth'
+    
+    ckpt_path = "weights/lednet.pth" if model == "lednet" else "weights/lednet_retrain_500000.pth"
+
     checkpoint = torch.load(
-        "weights/lednet.pth", map_location=device, weights_only=True
+        ckpt_path, map_location=device, weights_only=True
     )["params"]
     net.load_state_dict(checkpoint)
     net.eval()

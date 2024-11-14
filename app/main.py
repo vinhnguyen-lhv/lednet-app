@@ -25,7 +25,7 @@ if uploaded_file is not None:
     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     
     # Process the image (Enhance the image)
-    output_image = lednet_inference(image)
+    output_image = lednet_inference(image, model="lednet-retrain")
     
     
     # Create two columns for side-by-side display
