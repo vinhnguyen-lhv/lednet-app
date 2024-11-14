@@ -3,8 +3,16 @@ import cv2
 import numpy as np
 from lednet_utils import lednet_inference
 
-# Set the title of the app
-st.title("Image Processing with LEDNet")
+# Set the layout to the streamlit app as wide 
+st.set_page_config(layout='wide')
+
+# Setup the sidebar
+with st.sidebar: 
+    st.image('assets/LEDNet_LOLBlur_logo.png')
+    st.title('LEDNet Powered App')
+    st.info('This application is powered by the LEDNet deep learning model.')
+
+st.title('LEDNet Powered App') 
 
 # Add an image uploader
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
