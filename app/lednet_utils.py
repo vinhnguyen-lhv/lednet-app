@@ -18,19 +18,21 @@ from inference_lednet import check_image_size
 
 
 def lednet_inference(img, model="lednet"):
-    #device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = torch.device("cpu")
     # ------------------ set up LEDNet network -------------------
     down_factor = 8
     net = ARCH_REGISTRY.get("LEDNet")(channels=[32, 64, 128, 128], connection=False).to(
         device
     )
-    
-    ckpt_path = "weights/lednet.pth" if model == "lednet" else "weights/lednet_retrain_500000.pth"
 
-    checkpoint = torch.load(
-        ckpt_path, map_location=device, weights_only=True
-    )["params"]
+    ckpt_path = (
+        "weights/lednet.pth"
+        if model == "lednet"
+        else "weights/lednet_retrain_500000.pth"
+    )
+
+    checkpoint = torch.load(ckpt_path, map_location=device, weights_only=True)["params"]
     net.load_state_dict(checkpoint)
     net.eval()
 
@@ -61,3 +63,17 @@ def lednet_inference(img, model="lednet"):
 
     output = output.astype("uint8")
     return output
+
+
+# Function to resize image while keeping aspect ratio
+def resize_image(image, max_size=1200):
+    height, width = image.shape[:2]
+    if max(height, width) > max_size:
+        scale = max_size / max(height, width)
+        new_width = int(width * scale)
+        new_height = int(height * scale)
+        resized_image = cv2.resize(
+            image, (new_width, new_height), interpolation=cv2.INTER_AREA
+        )
+        return resized_image
+    return image  # Return original image if no resizing is needed
